@@ -1,0 +1,18 @@
+server:
+  port: 8761
+  content-path: /
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  server:
+    enable-self-preservation: false
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: localhost

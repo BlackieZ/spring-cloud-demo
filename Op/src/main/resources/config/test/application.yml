@@ -1,0 +1,27 @@
+server:
+  port: 80
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  application:
+    name: op
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    template-loader-path: classpath:/
+    suffix: .html
+  cloud:
+    config:
+      name: op
+      profile: test
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: true
+    fetch-registry: false

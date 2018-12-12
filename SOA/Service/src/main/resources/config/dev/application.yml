@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: soa
+  cloud:
+    config:
+      name: soa
+      profile: dev
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: true
+    fetch-registry: false

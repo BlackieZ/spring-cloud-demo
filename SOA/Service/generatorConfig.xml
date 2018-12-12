@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="jdbc.properties"/>
+    <context defaultModelType="flat" id="TestWrite" targetRuntime="MyBatis3">
+        <!--<property name="renamePlugin.search" value="Fdb"/>-->
+        <!--<property name="renamePlugin.replace" value=""/>-->
+        <property name="renamePlugin.prefix" value="MBG"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="com.blackie.plugins.PagePlugin"/>
+        <plugin type="com.blackie.plugins.OverwriteXmlPlugin">
+            <!--false 重新生成的XML覆盖旧的，true 追加-->
+            <property name="isMergeable" value="false"/>
+        </plugin>
+
+        <plugin type="x.flyspace.mybatisgenerator.plugin.RenamePlugin"/>
+        <plugin type="x.flyspace.mybatisgenerator.plugin.SeparateUserCodePlugin"/>
+        <commentGenerator type="x.flyspace.mybatisgenerator.comment.CommentGenerator">
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <jdbcConnection connectionURL="${spring.datasource.url}"
+                        driverClass="${spring.datasource.driverClassName}"
+                        password="${spring.datasource.password}"
+                        userId="${spring.datasource.username}"/>
+        <javaTypeResolver type="x.flyspace.mybatisgenerator.type.CustomJavaTypeResolver">
+            <property name="customTypeMap" value="TINYINT:java.lang.Integer"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.blackie.soa.client.model.po.test.mbg" targetProject="../Client/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="renamePlugin.prefix" value=""/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="mybatis.mappers.test.write.mbg"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+            <property name="renamePlugin.search" value="Mapper\z"/>
+            <property name="renamePlugin.replace" value="WriteMapper"/>
+            <property name="separateUserCodePlugin.targetPackage"
+                      value="mybatis.mappers.test.write.custom"/>
+            <property name="separateUserCodePlugin.search" value="Dao\z"/>
+            <property name="separateUserCodePlugin.replace" value="Mapper"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="com.blackie.soa.dal.test.write.mbg"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+            <property name="exampleMethodVisibility" value="public"/>
+            <property name="methodNameCalculator" value="default"/>
+            <property name="renamePlugin.search" value="DAO\z"/>
+            <property name="renamePlugin.replace" value="WriteDao"/>
+            <property name="separateUserCodePlugin.targetPackage" value="com.blackie.soa.dal.test.write.custom"/>
+            <property name="separateUserCodePlugin.search" value="\AMBG"/>
+            <property name="separateUserCodePlugin.replace" value=""/>
+        </javaClientGenerator>
+        <table schema="test" tableName="user_test" domainObjectName="UserTest" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="ID" sqlStatement="MySql" identity="true" />
+        </table>
+    </context>
+
+    <context defaultModelType="flat" id="TestRead" targetRuntime="MyBatis3">
+        <!--<property name="renamePlugin.search" value="Fdb"/>-->
+        <!--<property name="renamePlugin.replace" value=""/>-->
+        <property name="renamePlugin.prefix" value="MBG"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="com.blackie.plugins.PagePlugin"/>
+        <plugin type="com.blackie.plugins.OverwriteXmlPlugin"/>
+        <plugin type="x.flyspace.mybatisgenerator.plugin.RenamePlugin"/>
+        <plugin type="x.flyspace.mybatisgenerator.plugin.SeparateUserCodePlugin"/>
+        <commentGenerator type="x.flyspace.mybatisgenerator.comment.CommentGenerator">
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <jdbcConnection connectionURL="${spring.datasource.url}"
+                        driverClass="${spring.datasource.driverClassName}"
+                        password="${spring.datasource.password}"
+                        userId="${spring.datasource.username}"/>
+        <javaTypeResolver type="x.flyspace.mybatisgenerator.type.CustomJavaTypeResolver">
+            <property name="customTypeMap" value="TINYINT:java.lang.Integer"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.blackie.soa.client.model.po.test.mbg" targetProject="../Client/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="renamePlugin.prefix" value=""/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="mybatis.mappers.test.read.mbg"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+            <property name="renamePlugin.search" value="Mapper\z"/>
+            <property name="renamePlugin.replace" value="ReadMapper"/>
+            <property name="separateUserCodePlugin.targetPackage"
+                      value="mybatis.mappers.test.read.custom"/>
+            <property name="separateUserCodePlugin.search" value="Dao\z"/>
+            <property name="separateUserCodePlugin.replace" value="Mapper"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="com.blackie.soa.dal.test.read.mbg"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+            <property name="exampleMethodVisibility" value="public"/>
+            <property name="methodNameCalculator" value="default"/>
+            <property name="renamePlugin.search" value="DAO\z"/>
+            <property name="renamePlugin.replace" value="ReadDao"/>
+            <property name="separateUserCodePlugin.targetPackage" value="com.blackie.soa.dal.test.read.custom"/>
+            <property name="separateUserCodePlugin.search" value="\AMBG"/>
+            <property name="separateUserCodePlugin.replace" value=""/>
+        </javaClientGenerator>
+        <table schema="test" tableName="user_test" domainObjectName="UserTest" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="ID" sqlStatement="MySql" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>
