@@ -71,6 +71,12 @@
         <plugin type="com.blackie.plugins.OverwriteXmlPlugin"/>
         <plugin type="x.flyspace.mybatisgenerator.plugin.RenamePlugin"/>
         <plugin type="x.flyspace.mybatisgenerator.plugin.SeparateUserCodePlugin"/>
+        <!-- 统一Mapper 接口 -->
+        <plugin type="org.mybatis.generator.plugins.MapperPlugin">
+            <!--<property name="interfaceName" value="IMapper"/>-->
+            <!-- 是否删除Mapper类里的方法，默认删除-->
+            <property name="deleteMethod" value="false"/>
+        </plugin>
         <commentGenerator type="x.flyspace.mybatisgenerator.comment.CommentGenerator">
             <property name="suppressAllComments" value="false"/>
             <property name="suppressDate" value="true"/>
@@ -109,7 +115,11 @@
             <property name="separateUserCodePlugin.search" value="\AMBG"/>
             <property name="separateUserCodePlugin.replace" value=""/>
         </javaClientGenerator>
-        <table schema="test" tableName="user_test" domainObjectName="UserTest" >
+        <table schema="test" enableDeleteByExample="false" enableDeleteByPrimaryKey="false"
+               enableInsert="false"
+               enableUpdateByExample="false"
+               enableUpdateByPrimaryKey="false"
+               tableName="user_test" domainObjectName="UserTest" >
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="ID" sqlStatement="MySql" identity="true" />
         </table>

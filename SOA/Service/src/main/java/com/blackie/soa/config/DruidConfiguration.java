@@ -20,9 +20,17 @@ import javax.sql.DataSource;
 @Configuration
 @PropertySource(value = "classpath:jdbc.properties")
 public class DruidConfiguration {
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource druidDataSource() {
+
+    @Bean(name="dataSourceRead")
+    @ConfigurationProperties(prefix = "spring.datasource.read")
+    public DataSource druidDataSourceRead() {
+        DruidDataSource druidDataSource = new DruidDataSource();
+        return druidDataSource;
+    }
+
+    @Bean(name="dataSourceWrite")
+    @ConfigurationProperties(prefix = "spring.datasource.write")
+    public DataSource druidDataSourceWrite() {
         DruidDataSource druidDataSource = new DruidDataSource();
         return druidDataSource;
     }
@@ -43,7 +51,7 @@ public class DruidConfiguration {
         servletRegistrationBean.addInitParameter("deny","192.168.1.73");
         //登录查看信息的账号密码.
         servletRegistrationBean.addInitParameter("loginUsername","admin");
-        servletRegistrationBean.addInitParameter("loginPassword","123456");
+        servletRegistrationBean.addInitParameter("loginPassword","admin");
         //是否能够重置数据.
         servletRegistrationBean.addInitParameter("resetEnable","false");
         return servletRegistrationBean;
