@@ -1,12 +1,12 @@
 server:
-  port: 8082
+  port: 80
 spring:
   application:
-    name: soa
+    name: appserver
   cloud:
     config:
-      name: soa
-      profile: dev
+      name: appserver
+      profile: test
 
 
 eureka:

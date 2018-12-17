@@ -1,0 +1,30 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: appserver
+  cloud:
+    config:
+      name: appserver
+      profile: dev
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+feign:
+  hystrix:
+    enabled: true
+
+ribbon:
+  eager-load:
+    enabled: true
+
+

@@ -4,10 +4,7 @@ import com.blackie.soa.client.model.*;
 import com.blackie.soa.client.model.base.Response;
 import com.blackie.soa.client.model.po.test.mbg.UserTest;
 import com.blackie.soa.service.UserServerService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -22,20 +19,17 @@ public class HelloController {
 
     @ResponseBody
     @RequestMapping("/detail")
-    public Response<GetUserDetailResult> getUserInfo(Integer id){
+    public GetUserDetailResult detail(@RequestBody GetUserDetailParam param){
         GetUserDetailParam detailParam = new GetUserDetailParam();
-        detailParam.setUserId(id);
+        detailParam.setUserId(param.getUserId());
         GetUserDetailResult result = userServerService.detail(detailParam);
-        return new Response<>(result);
+        return result;
     }
 
     @ResponseBody
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public Response<AddUserResult> add(String name,String mobile){
-        AddUserParam addUserParam = new AddUserParam();
-        addUserParam.setMobile(mobile);
-        addUserParam.setName(name);
-        AddUserResult result = userServerService.add(addUserParam);
+    @RequestMapping(value = "/add")
+    public Response<AddUserResult> add(AddUserParam param){
+        AddUserResult result = userServerService.add(param);
         return new Response<>(result);
     }
 }
