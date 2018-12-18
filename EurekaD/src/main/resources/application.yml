@@ -11,12 +11,7 @@ eureka:
     enable-self-preservation: false  #自我保护模式
     eviction-interval-timer-in-ms: 5000 #主动失效检测间隔
     use-read-only-response-cache: false
-  client:
-    register-with-eureka: false
-    fetch-registry: false
   instance:
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     hostname: localhost
-    lease-renewal-interval-in-seconds: 5 #心跳间隔，5秒
-    lease-expiration-duration-in-seconds: 10 #没有心跳的淘汰时间

@@ -1,0 +1,46 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      name: gateway
+      profile: dev
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+            - id: search
+              uri: http://cn.bing.com/
+              predicates:
+                - Path=/search/**
+              filters:
+                - StripPrefix=0
+            - id: soa
+              uri: lb://soa
+              predicates:
+                - Path=/userapi/**
+              filters:
+                - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+ribbon:
+  eager-load:
+    enabled: true
+
+

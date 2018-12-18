@@ -15,6 +15,7 @@
         <module>EurekaD</module>
         <module>SOA</module>
         <module>Common</module>
+        <module>Gateway</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -100,6 +101,18 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-openfeign-core</artifactId>
+                <version>2.0.2.RELEASE</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-gateway -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>2.0.2.RELEASE</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-gateway -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-gateway-core</artifactId>
                 <version>2.0.2.RELEASE</version>
             </dependency>
 
