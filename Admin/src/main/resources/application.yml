@@ -1,0 +1,40 @@
+server:
+  port: 9001
+
+spring:
+  security:
+    user:
+      name: 'admin'
+      password: 'admin'
+  application:
+    name: admin
+  cloud:
+    config:
+      name: admin
+      profile: dev
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+ribbon:
+  eager-load:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
